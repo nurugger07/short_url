@@ -1,21 +1,53 @@
-# ShortUrl
+# ShortUrl Challenge
 
-**TODO: Add description**
+This challenge is designed to get you out of your "comfort zone" and expose you to other libraries & patterns you may not
+be familiar with. This isn't going into production so have fun with it!
 
-## Installation
+## Requirements
+Write a web application that allows users to take a long URL & convert it to a shortened URL.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `short_url` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:short_url, "~> 0.1.0"}
-  ]
-end
+Example:
+```
+http://really-long-url.com/the/page/I/am/looking/for -> http://localhost:4000/abc1234
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/short_url](https://hexdocs.pm/short_url).
+The program should:
 
+ 1. Accept a long URL
+
+ 2. Generate a short local URL like `/abc1234`
+
+ 3. Store the short URL & the long URL together
+
+ 4. Redirect visitors to the long URL when the short URL is visited
+
+ 5. Track the number of times the short URL is visited
+
+ 6. Provide a statistics page for the short URL, such as `/abc1234/stats`
+    - Visiting this URL should show:
+      * short URL
+      * long URL
+      * number of times the short URL was accessed
+
+## Constraints
+
+* Data must use an in memory data store
+
+* Don't use the Phoenix framework. Plug, Raxx, Cowboy, or any other library are all exceptable.
+
+## Challenges
+
+* Don’t allow an invalid URL to be entered into the form.
+
+* Detect duplicate URLs. Don’t create a new short URL if one already exists
+
+* Record the date and time each short URL was accessed
+
+* Use either: GenServer, Agent, or ETS as the data store
+
+##
+
+This challenge is based on Exercise 54 in Brian P. Hogan's “[Exercises for Programmers][1]"
+book by PragProg.
+
+[1]: https://pragprog.com/book/bhwb/exercises-for-programmers
