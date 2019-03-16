@@ -11,7 +11,7 @@ defmodule ShortUrl.Store.Agent do
   @behaviour ShortUrl.Store
 
   def start_link(_) do
-    Agent.start_link(fn ->  [] end, name: __MODULE__)
+    Agent.start_link(fn -> [] end, name: __MODULE__)
   end
 
   @doc """
@@ -31,7 +31,7 @@ defmodule ShortUrl.Store.Agent do
   @impl ShortUrl.Store
   def lookup(key) do
     __MODULE__
-    |> Agent.get(&(&1))
+    |> Agent.get(& &1)
     |> handle_lookup(key)
   end
 end

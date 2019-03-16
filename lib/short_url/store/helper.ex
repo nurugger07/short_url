@@ -8,7 +8,7 @@ defmodule ShortUrl.Store.Helper do
   @doc """
   Generate a random and unique string key for the short URI
   """
-  @spec generate_key() :: String.t
+  @spec generate_key() :: String.t()
   def generate_key do
     UUID.uuid4()
     |> String.split("-")
@@ -25,7 +25,8 @@ defmodule ShortUrl.Store.Helper do
     {:ok, "URI"}
 
   """
-  @spec return_uri(List.t) :: {:ok, String.t} | {:error, :not_found} | {:error, :invalid_argument}
+  @spec return_uri(List.t()) ::
+          {:ok, String.t()} | {:error, :not_found} | {:error, :invalid_argument}
   def return_uri([]), do: {:error, :not_found}
   def return_uri([{_key, uri}]), do: {:ok, uri}
   def return_uri(list) when is_list(list), do: {:error, :invalid_argument}
@@ -42,7 +43,7 @@ defmodule ShortUrl.Store.Helper do
     false
 
   """
-  @spec has_key?(Tuple.t, String.t) :: Boolean.t
+  @spec has_key?(Tuple.t(), String.t()) :: Boolean.t()
   def has_key?({stored, _}, new) when stored == new, do: true
   def has_key?(_, _), do: false
 
@@ -57,7 +58,7 @@ defmodule ShortUrl.Store.Helper do
     iex> ShortUrl.Store.Helper.has_uri?({"key", "URI"}, "no-URI")
     false
   """
-  @spec has_uri?(Tuple.t, String.t) :: Boolean.t
+  @spec has_uri?(Tuple.t(), String.t()) :: Boolean.t()
   def has_uri?({_, stored}, new) when stored == new, do: true
   def has_uri?(_, _), do: false
 
@@ -74,15 +75,16 @@ defmodule ShortUrl.Store.Helper do
     [{"new-key", "uri"}]
 
   """
-  @spec handle_commit(List.t, String.t, String.t) :: List.t
+  @spec handle_commit(List.t(), String.t(), String.t()) :: List.t()
   def handle_commit([], uri, key), do: [{key, uri}]
+
   def handle_commit(state, uri, key) when is_list(state) do
     state =
       state
       |> Stream.reject(&has_uri?(&1, uri))
       |> Enum.to_list()
 
-    [{key, uri}|state]
+    [{key, uri} | state]
   end
 
   @doc """
@@ -98,13 +100,14 @@ defmodule ShortUrl.Store.Helper do
     {:error, :invalid_argument}
 
   """
-  @spec handle_lookup(List.t, String.t) :: {:ok, String.t} | {:error, :invalid_argument} | {:error, :not_found}
+  @spec handle_lookup(List.t(), String.t()) ::
+          {:ok, String.t()} | {:error, :invalid_argument} | {:error, :not_found}
   def handle_lookup([], _key), do: {:error, :not_found}
+
   def handle_lookup(state, key) when is_list(state) do
     state
     |> Stream.filter(&has_key?(&1, key))
     |> Enum.to_list()
     |> return_uri()
   end
-
 end

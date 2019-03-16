@@ -3,7 +3,6 @@ defmodule ShortUrl.Store do
 
   """
 
-  @callback commit(String.t) :: {:ok, String.t} | {:error, String.t}
-  @callback lookup(String.t) :: {:ok, String.t} | {:error, Atom.t}
-
+  @callback commit(String.t()) :: {:ok, String.t()} | {:error, String.t()}
+  @callback lookup(String.t()) :: {:ok, String.t()} | {:error, Atom.t()}
 end

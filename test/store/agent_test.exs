@@ -13,5 +13,4 @@ defmodule ShortUrl.Store.AgentTest do
     assert {:ok, "http://google.com"} = Store.lookup(key)
     assert {:error, :not_found} = Store.lookup("no-key")
   end
-
 end

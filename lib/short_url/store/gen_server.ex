@@ -56,5 +56,4 @@ defmodule ShortUrl.Store.GenServer do
   def handle_call({:lookup, key}, _from, state) do
     {:reply, handle_lookup(state, key), state}
   end
-
 end
