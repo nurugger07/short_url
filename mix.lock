@@ -1,0 +1,6 @@
+%{
+  "ace": {:hex, :ace, "0.18.4", "7a039494cbbc5680772e0e5de3fe8300d5065560cdbdec7abc8ac276ffe0d620", [:mix], [{:hpack, "~> 0.2.3", [hex: :hpack_erl, repo: "hexpm", optional: false]}, {:raxx, "~> 0.17.0 or ~> 0.18.0", [hex: :raxx, repo: "hexpm", optional: false]}], "hexpm"},
+  "hpack": {:hex, :hpack_erl, "0.2.3", "17670f83ff984ae6cd74b1c456edde906d27ff013740ee4d9efaa4f1bf999633", [:rebar3], [], "hexpm"},
+  "raxx": {:hex, :raxx, "0.18.1", "ae84242e035fc367cb0bd3a49349482040a259ed1504cc030045c20bdd85b307", [:mix], [], "hexpm"},
+  "uuid": {:hex, :uuid, "1.1.8", "e22fc04499de0de3ed1116b770c7737779f226ceefa0badb3592e64d5cfb4eb9", [:mix], [], "hexpm"},
+}
