@@ -9,8 +9,8 @@ defmodule ShortUrl.Store.GenServerTest do
   end
 
   test "`lookup/`1 retrieves a URI using a key" do
-    assert {:ok, key} = Store.commit("http://google.com")
-    assert {:ok, "http://google.com"} = Store.lookup(key)
+    assert {:ok, key} = Store.commit("http://facebook.com")
+    assert {:ok, "http://facebook.com"} = Store.lookup(key)
     assert {:error, :not_found} = Store.lookup("no-key")
   end
 end

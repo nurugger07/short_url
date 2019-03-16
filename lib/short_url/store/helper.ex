@@ -63,28 +63,28 @@ defmodule ShortUrl.Store.Helper do
   def has_uri?(_, _), do: false
 
   @doc """
-  Given a list this function will remove any matching URI and then add a
-  new tuple to the list.
+  Given a list this function will commit the URI and key to the list. If the URI is
+  already in the list it will not modify the list.
 
   ## Examples
     iex> ShortUrl.Store.Helper.handle_commit([], "uri", "key")
-    [{"key", "uri"}]
+    {"key",[{"key", "uri"}]}
     iex> ShortUrl.Store.Helper.handle_commit([{"key1", "uri1"}], "uri2", "key2")
-    [{"key2", "uri2"}, {"key1", "uri1"}]
+    {"key2", [{"key2", "uri2"}, {"key1", "uri1"}]}
     iex> ShortUrl.Store.Helper.handle_commit([{"key", "uri"}], "uri", "new-key")
-    [{"new-key", "uri"}]
+    {"key", [{"key", "uri"}]}
 
   """
-  @spec handle_commit(List.t(), String.t(), String.t()) :: List.t()
-  def handle_commit([], uri, key), do: [{key, uri}]
+  @spec handle_commit(List.t(), String.t(), String.t()) :: {String.t(), List.t()}
+  def handle_commit([], uri, key), do: {key, [{key, uri}]}
 
   def handle_commit(state, uri, key) when is_list(state) do
-    state =
-      state
-      |> Stream.reject(&has_uri?(&1, uri))
-      |> Enum.to_list()
-
-    [{key, uri} | state]
+    with [{key, ^uri}] <- Stream.filter(state, &has_uri?(&1, uri)) |> Enum.to_list() do
+      {key, state}
+    else
+      [] ->
+        {key, [{key, uri} | state]}
+    end
   end
 
   @doc """

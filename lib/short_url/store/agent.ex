@@ -20,9 +20,7 @@ defmodule ShortUrl.Store.Agent do
   """
   @impl ShortUrl.Store
   def commit(uri) do
-    key = generate_key()
-
-    {Agent.update(__MODULE__, Helper, :handle_commit, [uri, key]), key}
+    {:ok, Agent.get_and_update(__MODULE__, Helper, :handle_commit, [uri, generate_key()])}
   end
 
   @doc """

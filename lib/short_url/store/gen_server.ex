@@ -41,7 +41,7 @@ defmodule ShortUrl.Store.GenServer do
   def handle_call({:commit, uri}, _from, state) do
     key = generate_key()
 
-    with new_state when is_list(new_state) <- handle_commit(state, uri, key) do
+    with {key, new_state} when is_list(new_state) <- handle_commit(state, uri, key) do
       {:reply, {:ok, key}, new_state}
     else
       error ->
