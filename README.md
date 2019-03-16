@@ -13,13 +13,13 @@ http://really-long-url.com/the/page/I/am/looking/for -> http://localhost:4000/ab
 
 The program should:
 
- 1. Accept a long URL
+ 1. [X] Accept a long URL
 
- 2. Generate a short local URL like `/abc1234`
+ 2. [X] Generate a short local URL like `/abc1234`
 
- 3. Store the short URL & the long URL together
+ 3. [X] Store the short URL & the long URL together
 
- 4. Redirect visitors to the long URL when the short URL is visited
+ 4. [X] Redirect visitors to the long URL when the short URL is visited
 
  5. Track the number of times the short URL is visited
 
@@ -31,19 +31,19 @@ The program should:
 
 ## Constraints
 
-* Data must use an in memory data store
+* [X] Data must use an in memory data store
 
-* Don't use the Phoenix framework. Plug, Raxx, Cowboy, or any other library are all exceptable.
+* [X] Don't use the Phoenix framework. Plug, Raxx, Cowboy, or any other library are all exceptable.
 
 ## Challenges
 
-* Don’t allow an invalid URL to be entered into the form.
+* [X] Don’t allow an invalid URL to be entered into the form.
 
-* Detect duplicate URLs. Don’t create a new short URL if one already exists
+* [X] Detect duplicate URLs. Don’t create a new short URL if one already exists
 
 * Record the date and time each short URL was accessed
 
-* Use either: GenServer, Agent, or ETS as the data store
+* [X] Use either: GenServer, Agent, or ETS as the data store
 
 ##
 
