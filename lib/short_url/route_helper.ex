@@ -6,7 +6,7 @@ defmodule ShortUrl.RouteHelper do
   import ShortUrl.View
   import Raxx, only: [response: 1, redirect: 1]
 
-  @store Application.get_env(:short_url, :store, ShortUrl.Store.Agent)
+  @store Application.get_env(:short_url, :store, ShortUrl.Store.GenServer)
   @endpoint Application.get_env(:short_url, :store, "http://localhost:8080/")
 
   @doc """
