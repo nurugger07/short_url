@@ -33,7 +33,7 @@ The program should:
 
 * [X] Data must use an in memory data store
 
-* [X] Don't use the Phoenix framework. Plug, Raxx, Cowboy, or any other library are all exceptable.
+* [X] Don't use the Phoenix framework. Plug, Raxx, Cowboy, or any other library are all acceptable.
 
 ## Challenges
 
